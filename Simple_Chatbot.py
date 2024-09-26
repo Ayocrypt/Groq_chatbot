@@ -46,6 +46,16 @@ def toggle_theme():
         st.error(f"Config file not found at {config_path}. Creating a new one.")
         # os.makedirs(os.path.dirname(config_path), exist_ok=True)
         config = '[theme]\nbase = "light"\n'
+        current_directory = os.getcwd()
+        st.error(f"Current working directory: {current_directory}")
+         # List all files in the current directory
+        files_in_directory = os.listdir(current_directory)
+        st.error(f"Files in the current directory: {files_in_directory}")
+
+
+    # List all files in the current directory
+    files_in_directory = os.listdir(current_directory)
+    st.error(f"Files in the current directory: {files_in_directory}")
     
     if "base = \"light\"" in config:
         new_config = config.replace("base = \"light\"", "base = \"dark\"")
