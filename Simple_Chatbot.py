@@ -28,33 +28,6 @@ st.markdown(chat_message_mk(), unsafe_allow_html=True)
 
 
 
-def print_current_directory_info():
-    """Print the current working directory and its contents."""
-    current_directory = os.getcwd()
-    st.error(f"Current working directory: {current_directory}")
-
-    files_in_directory = os.listdir(current_directory)
-    st.error(f"Files in the current directory: {files_in_directory}")
-
-def find_streamlit_directory():
-    """Search for the .streamlit directory in the current directory and its subdirectories."""
-    current_directory = os.getcwd()
-    streamlit_dir = os.path.join(current_directory, ".streamlit")
-
-    if os.path.exists(streamlit_dir):
-        st.error(f".streamlit directory found at: {streamlit_dir}")
-        return streamlit_dir
-
-    st.error(".streamlit directory not found. Searching nested directories...")
-
-    for root, dirs, _ in os.walk(current_directory):
-        if ".streamlit" in dirs:
-            found_dir = os.path.join(root, ".streamlit")
-            st.error(f".streamlit directory found at: {found_dir}")
-            return found_dir
-
-    st.error("No .streamlit directory found in any nested folders.")
-    return None
 
 
 
@@ -62,16 +35,14 @@ def find_streamlit_directory():
 def toggle_theme():
     # config_path = os.path.expanduser(os.path.join('~', ".streamlit", "config.toml"))
     config_path = os.path.join(".streamlit", "config.toml")
-    print_current_directory_info()
-    find_streamlit_directory()
+  
     try:
         with open(config_path, "r") as f:
             config = f.read()
     except FileNotFoundError:
-        print_current_directory_info()
-        find_streamlit_directory()
+      
         st.error(f"Config file not found at {config_path}. Creating a new one.")
-        # os.makedirs(os.path.dirname(config_path), exist_ok=True)
+        os.makedirs(os.path.dirname(config_path), exist_ok=True)
         config = '[theme]\nbase = "light"\n'
 
     
