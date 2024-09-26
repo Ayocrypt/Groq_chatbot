@@ -28,7 +28,8 @@ st.markdown(chat_message_mk(), unsafe_allow_html=True)
 
 # Function to toggle theme
 def toggle_theme():
-    config_path = os.path.expanduser(os.path.join('~', ".streamlit", "config.toml"))
+    # config_path = os.path.expanduser(os.path.join('~', ".streamlit", "config.toml"))
+    config_path = os.path.join(".streamlit", "config.toml")
 
     try:
         with open(config_path, "r") as f:
