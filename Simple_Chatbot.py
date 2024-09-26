@@ -30,6 +30,14 @@ st.markdown(chat_message_mk(), unsafe_allow_html=True)
 def toggle_theme():
     # config_path = os.path.expanduser(os.path.join('~', ".streamlit", "config.toml"))
     config_path = os.path.join(".streamlit", "config.toml")
+     # Print the current working directory
+    current_directory = os.getcwd()
+    st.error(f"Current working directory: {current_directory}")
+
+    # List all files in the current directory
+    files_in_directory = os.listdir(current_directory)
+    st.error(f"Files in the current directory: {files_in_directory}")
+
 
     try:
         with open(config_path, "r") as f:
