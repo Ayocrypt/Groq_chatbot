@@ -44,7 +44,7 @@ def toggle_theme():
             config = f.read()
     except FileNotFoundError:
         st.error(f"Config file not found at {config_path}. Creating a new one.")
-        os.makedirs(os.path.dirname(config_path), exist_ok=True)
+        # os.makedirs(os.path.dirname(config_path), exist_ok=True)
         config = '[theme]\nbase = "light"\n'
     
     if "base = \"light\"" in config:
